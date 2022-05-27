@@ -112,7 +112,7 @@ async function run() {
             };
 
             const result = await usersCollection.updateOne(filter, updateDoc, options);
-            const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+            const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1D' })
             res.send({ result, token });
         })
 
@@ -252,6 +252,36 @@ async function run() {
         })
 
 
+        // update a single products 
+
+        app.put('/product', async (req, res) => {
+
+            const product = req.body.product;
+            console.log("updateProduct ", product);
+
+
+
+            const filter = { _id: ObjectId(product._id) };
+
+            const options = { upsert: true };
+
+            const updateDoc = {
+                $set: {
+                    availableQuantity: product.availableQuantity,
+                    minimumOrder: product.minimumOrder,
+                    unitPrice: product.unitPrice
+
+                },
+            };
+            const result = await productsCollection.updateOne(filter, updateDoc, options);
+
+            res.send(result);
+
+        })
+
+
+
+
         // update a single products quantity
 
         app.put('/products/:productId', async (req, res) => {
@@ -389,6 +419,30 @@ async function run() {
             const review = await reviewsCollection.find(query).toArray();
 
             res.send(review);
+
+        })
+
+
+        // get all the summery
+
+        app.get('/summary', async (req, res) => {
+
+            const query = {};
+
+            const review = await reviewsCollection.find(query).toArray();
+            const users = await usersCollection.find(query).toArray();
+            const orders = await ordersCollection.find(query).toArray();
+            const product = await productsCollection.find(query).toArray();
+
+            const summary = {
+                reviews: review.length,
+                users: users.length,
+                orders: orders.length,
+                products: product.length
+
+            }
+
+            res.send(summary);
 
         })
 
