@@ -424,28 +424,7 @@ async function run() {
         })
 
 
-        // get all the summery
-
-        app.get('/summary', async (req, res) => {
-
-            const query = {};
-
-            const review = await reviewsCollection.find(query).toArray();
-            const users = await usersCollection.find(query).toArray();
-            const orders = await ordersCollection.find(query).toArray();
-            const product = await productsCollection.find(query).toArray();
-
-            const summary = {
-                reviews: review.length,
-                users: users.length,
-                orders: orders.length,
-                products: product.length
-
-            }
-
-            res.send(summary);
-
-        })
+      
 
 
 
