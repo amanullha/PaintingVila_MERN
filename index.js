@@ -52,6 +52,7 @@ function verifyJWT(req, res, next) {
 
 
 const uri = "mongodb+srv://painting-vila:hQOtNTHXtHSqEHvj@cluster0.0fuk0.mongodb.net/?retryWrites=true&w=majority";
+// const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.0fuk0.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
