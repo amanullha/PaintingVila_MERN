@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
 
-    res.send("Running Leaking Fixers Server")
+    res.send("Running Painting Vila Server")
 })
 
 app.listen(port, () => {
