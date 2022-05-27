@@ -56,13 +56,6 @@ const uri = "mongodb+srv://painting-vila:hQOtNTHXtHSqEHvj@cluster0.0fuk0.mongodb
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
-// client.connect(err => {
-//     console.log("connected");
-//     const collection = client.db("paintingDB").collection("users");
-//     // perform actions on the collection object
-//     client.close();
-// });
-
 
 async function run() {
 
