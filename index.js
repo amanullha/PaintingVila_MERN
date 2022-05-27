@@ -411,7 +411,17 @@ async function run() {
 
 
 
-      
+        // get all the reviews
+
+        app.get('/reviews', async (req, res) => {
+
+            const query = {};
+
+            const review = await reviewsCollection.find(query).toArray();
+
+            res.send(review);
+
+        })
 
 
         // get all the summery
