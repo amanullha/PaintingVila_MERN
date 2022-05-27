@@ -466,6 +466,3 @@ async function run() {
 }
 
 run().catch(console.dir);
-
-// user: painting-vila
-// pass: hQOtNTHXtHSqEHvj
